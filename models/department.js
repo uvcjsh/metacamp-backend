@@ -17,13 +17,15 @@ module.exports = class Department extends Sequelize.Model {
       timestamps: true,
       underscored: false,
       modelName: 'Departments',
-      tableName: 'departsments',
+      tableName: 'departments',
       paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci'
     })
   }
   static associate(db) {
-    db.Department.hasMany(db.User, { foreignKey: 'departmentId', sourceKey: 'id'})
+    db.Department.hasMany(db.User, {
+      foreignKey: { name: 'departmentId', allowNull: false}
+    })
   }
 }

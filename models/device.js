@@ -4,9 +4,10 @@ module.exports = class Device extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       name: {
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(100),
+        allowNull: false
       },
-      model: {
+      deviceModelName: {
         type: Sequelize.STRING(100)
       },
       manufacturer: {
@@ -15,27 +16,21 @@ module.exports = class Device extends Sequelize.Model {
       location: {
         type: Sequelize.STRING(100)
       },
-      edge_id: {
-        type: Sequelize.STRING(100)
+      edgeSerialNumber: {
+        type: Sequelize.STRING(20),
+        allowNull: false
       },
-      profile_id: {
-        type: Sequelize.STRING(100)
+      networkInterface: {
+        type: Sequelize.STRING(10),
+        allowNull: false
       },
-      network_interface: {
-        type: Sequelize.STRING(100)
-      },
-      network_config: {
-        type: Sequelize.STRING(100)
+      networkConfig: {
+        type: Sequelize.JSON,
+        allowNull: false
       },
       description: {
         type: Sequelize.STRING(100)
-      },
-      user_id: {
-        type: Sequelize.STRING(100)
-      },
-      group_id: {
-        type: Sequelize.STRING(100)
-      },
+      }
     }, {
       sequelize,
       timestamps: true,
