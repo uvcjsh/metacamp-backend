@@ -16,7 +16,6 @@ router.route('/')
   })
   .post(deviceConnectionCheck, async (req, res, next) => {
     try {
-      console.log("여기!")
       const {
         name,
         deviceModelName,
@@ -42,10 +41,8 @@ router.route('/')
         userId,
         departmentId
       })
-      console.log("결과", device)
       res.status(201).json(device)
     } catch (err) {
-      console.error("에러!", err)
       next(err)
     }
   })
