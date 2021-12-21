@@ -19,14 +19,15 @@ router.route('/')
   })
   .post(async (req, res, next) => {
     try {
-      const {name, userid, password, role, email, phone} = req.body
+      const {name, userId, password, role, email, phone, departmentId} = req.body
       const user = await User.create({
         name,
-        userid,
+        userId,
         password,
         role,
         email,
-        phone
+        phone,
+        departmentId
       })
       console.log(user)
       res.status(201).json(user)
@@ -51,7 +52,7 @@ router.route('/')
         const {name, code, description} = req.body
         const result = await User.update({
           name,
-          userid,
+          userId,
           password,
           role,
           email,

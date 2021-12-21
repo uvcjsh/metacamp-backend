@@ -5,7 +5,8 @@ module.exports = class Device extends Sequelize.Model {
     return super.init({
       name: {
         type: Sequelize.STRING(100),
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       deviceModelName: {
         type: Sequelize.STRING(100)

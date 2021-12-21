@@ -27,5 +27,8 @@ module.exports = class Department extends Sequelize.Model {
     db.Department.hasMany(db.User, {
       foreignKey: { name: 'departmentId', allowNull: false}
     })
+    db.Department.hasMany(db.Device, {
+      foreignKey: { name: 'departmentId', allowNull: false}
+    })
   }
 }

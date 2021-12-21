@@ -1,5 +1,6 @@
 const express = require('express')
 const Device = require('../models/device')
+const deviceConnectionCheck = require('../middleware/device-connection-check')
 
 const router = express.Router()
 
@@ -13,36 +14,38 @@ router.route('/')
       next(err)
     }
   })
-  .post(async (req, res, next) => {
+  .post(deviceConnectionCheck, async (req, res, next) => {
     try {
+      console.log("여기!")
       const {
         name,
-        device_model_name,
+        deviceModelName,
         manufacturer,
         location,
-        edge_serial_number,
-        network_interface,
-        network_config,
+        edgeSerialNumber,
+        networkInterface,
+        networkConfig,
         description,
-        user_id,
-        department_id
+        userId,
+        departmentId
       } = req.body
-      const Device = await Device.create({
+      console.log(req.body)
+      const device = await Device.create({
         name,
-        device_model_name,
+        deviceModelName,
         manufacturer,
         location,
-        edge_serial_number,
-        network_interface,
-        network_config,
+        edgeSerialNumber,
+        networkInterface,
+        networkConfig,
         description,
-        user_id,
-        department_id
+        userId,
+        departmentId
       })
-      console.log(Device)
-      res.status(201).json(Device)
-    } catch(err) {
-      console.error(err)
+      console.log("결과", device)
+      res.status(201).json(device)
+    } catch (err) {
+      console.error("에러!", err)
       next(err)
     }
   })
